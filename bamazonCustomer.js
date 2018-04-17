@@ -34,7 +34,9 @@ function start() {
 
 function endBuy() {
   connection.end();
+  console.log("");
   console.log("Thank you for checking out out inventory! Have a good day!")
+  console.log("");
 }
 
 function showList() {
@@ -60,9 +62,7 @@ function buyItem() {
       message: "how much would you like to buy?"
     },
   ]).then(function (data) {
-    console.log(data.Item);
-    console.log(data.Stock);
-
+    
     var pIt = data.Item;
     var pSt = data.Stock;
     var query = "SELECT * FROM products WHERE item_id=" + pIt;
@@ -81,16 +81,23 @@ function buyItem() {
 
           connection.query(query2, function (err, data3) {
             if (err) throw err;
+            console.log("");
             console.log("order Complete!");
+            console.log("");
             console.log("total Proce for" + pSt + "of the " + data2[0].product_name + "was: $" + totalCost);
+            console.log("");
             showList();
           });
         } else {
-          console.log("insufficient amout!\n");
+          console.log("");
+          console.log("insufficient amount!\n");
+          console.log("");
           showList();
         }
       } else {
+        console.log("");
         console.log("\nItem not found!!\n");
+        console.log("");
         showList();
 
       }
